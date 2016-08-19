@@ -10,7 +10,7 @@
 //above=0 means from below a=trunpt, b= +inf   
 
 double rtrun(double mu, double sigma,double trunpt, int above);
-void makexinfo(size_t p, size_t n, arma::mat const& x, xinfo& xi, size_t nc);
+void makexinfo(arma::uword p, arma::uword n, arma::mat const& x, xinfo& xi, arma::uword nc);
 //fit double array fv
 void fit(tree& t, xinfo& xi, dinfo& di, arma::vec& fv);
 

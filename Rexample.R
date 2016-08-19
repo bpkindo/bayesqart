@@ -1,4 +1,4 @@
-ProjectLibrary <- "/..."
+ProjectLibrary <- "..."
 setwd(paste0(ProjectLibrary) )
 library(devtools)
 library(roxygen2)
@@ -8,7 +8,7 @@ library(Rcpp)
 #RcppArmadillo.package.skeleton( "BayesQArt" )
 #create("BayesQArt")
 setwd(paste0(ProjectLibrary,"/BayesQArt/R"))
-devtools::document
+devtools::document()
 set.seed(9)
 library("BayesQArt")
 
@@ -32,7 +32,7 @@ set.seed(99)
 out = BayesQArt(y=y,X=x, Xtest = xp, quantile = 0.5, 
                 burn = 3000, 
                 nd = 5000,
-                m = 200,
+                m = 200, 
                 min_obs_node= 5, 
                 aa_parm = 2.0,
                 bb_parm = 3.0,
@@ -43,5 +43,14 @@ out = BayesQArt(y=y,X=x, Xtest = xp, quantile = 0.5,
                 betap=2.0, 
                 kappa = 2.0, 
                 maxdept = 3)
-            
+
+#actual vs. predicted plot
+#training data
+plot(fy, out$pred_train)
+abline(0,1)
+
+#testing data
+plot(fpy, out$pred_test)
+abline(0,1)
+
 wmad(fpy,out$pred_test,0.5)
